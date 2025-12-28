@@ -18,10 +18,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ReactionTest.cpp">
+    <ClCompile Include="Vertex.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Graph.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ReactionTest.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +38,19 @@
     <ClInclude Include="Constants.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ReactionTest.h">
+    <ClInclude Include="Vertex.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Graph.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ReactionTest.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

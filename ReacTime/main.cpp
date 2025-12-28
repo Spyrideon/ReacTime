@@ -1,5 +1,6 @@
 #include "Constants.h"
 #include "Graph.h"
+#include "ApplicationManager.h"
 
 
 
@@ -10,6 +11,7 @@ int main()
 	window.setVerticalSyncEnabled(true);																	// Enable vertical sync
 	window.setFramerateLimit(60);																			// Set framerate limit to 60 FPS
 
+	ApplicationManager applicationManager(window);
 	Graph graph;
 
 
@@ -29,7 +31,21 @@ int main()
 		{
 			if (event->is<sf::Event::Closed>())
 				window.close();
+			if (const auto* mb = event->getIf<sf::Event::MouseButtonPressed>()) {
+				if (mb->button == sf::Mouse::Button::Left) {
+					sf::Vector2i pixel = mb->position;
+					sf::Vector2f world = window.mapPixelToCoords(pixel);
+
+					if (applicationManager.getGraphBounds().contains(world)) {
+						applicationManager.graphButtonClicked();
+					}
+					else if (applicationManager.getReactionBounds().contains(world)) {
+						applicationManager.reactionTestButtonClicked();
+					}
+				}
+			}
 		}
+		
 		
 
 	//--------------------------------------------- UPDATE -----------------------------------------------//
@@ -38,7 +54,8 @@ int main()
 	//	-------------------------------------------- DRAW ------------------------------------------------//
 		window.clear();
 		
-		graph.draw(window);
+		applicationManager.update();
+		//graph.draw(window);
 
 		window.display();
 	//	-------------------------------------------- DRAW ------------------------------------------------//

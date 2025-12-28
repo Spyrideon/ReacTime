@@ -13,7 +13,7 @@ void Graph::writeVertex(float delay, float rT) {
 		throw std::out_of_range("Vertex array is full");
 	}
 	else {
-		vertexArray[nextIndex] = ReactionTest{delay, rT};
+		vertexArray[nextIndex] = Vertex{delay, rT};
 		/*ReactionTest current = vertexArray[nextIndex];
 		current.setDelayTime(delay + 50.f);
 		current.setReactionTime(625.f - rT);
@@ -22,7 +22,7 @@ void Graph::writeVertex(float delay, float rT) {
 }
 
 void Graph::draw(sf::RenderWindow& window) {
-	for (ReactionTest vertex : vertexArray) {
+	for (Vertex vertex : vertexArray) {
 		vertex.draw(window);
 	}
 	window.draw(xAxis);

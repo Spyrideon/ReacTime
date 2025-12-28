@@ -141,14 +141,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ReactionTest.cpp" />
+    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationManager.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="ReactionTest.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

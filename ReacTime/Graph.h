@@ -2,11 +2,11 @@
 #include "Constants.h"
 #include <stdexcept>
 #include <optional>
-#include "ReactionTest.h"
+#include "Vertex.h"
 
 class Graph {
 private:
-	ReactionTest vertexArray[VertexArraySize];			// holds up to 100 vertices
+	Vertex vertexArray[VertexArraySize];			// holds up to 50 vertices
 	int nextIndex = 0;									// holds next index in the array to write to
 
 	sf::RectangleShape xAxis;							// axis for delay in seconds
