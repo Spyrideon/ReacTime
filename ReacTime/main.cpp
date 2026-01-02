@@ -42,6 +42,10 @@ int main()
 					else if (applicationManager.getReactionBounds().contains(world)) {
 						applicationManager.reactionTestButtonClicked();
 					}
+					else if (applicationManager.getReactionTestBounds().contains(world) && applicationManager.isReactionTestButtonActive()) {
+						printf("ReactionStartButton clicked!\n");
+
+					}
 				}
 			}
 		}

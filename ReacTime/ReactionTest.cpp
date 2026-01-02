@@ -15,5 +15,10 @@ void ReactionTest::runTest() {
 void ReactionTest::update() {
 	if (startButton.isActive()) {
 		runTest();
+		startButton.makePassive();
 	}
+}
+
+sf::FloatRect ReactionTest::getStartTestBounds() {
+	return startButton.getBounds();
 }

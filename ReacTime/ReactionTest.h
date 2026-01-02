@@ -15,4 +15,5 @@ public:
 
 	void update();
 
+	sf::FloatRect getStartTestBounds();
 };

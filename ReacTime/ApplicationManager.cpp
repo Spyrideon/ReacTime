@@ -34,3 +34,9 @@ sf::FloatRect ApplicationManager::getGraphBounds() {
 sf::FloatRect ApplicationManager::getReactionBounds() {
 	return reactionTestButton.getBounds();
 }
+sf::FloatRect ApplicationManager::getReactionTestBounds() {
+	return reactionTest.getStartTestBounds();
+}
+bool ApplicationManager::isReactionTestButtonActive() {
+	return reactionTestButton.isActive();
+}

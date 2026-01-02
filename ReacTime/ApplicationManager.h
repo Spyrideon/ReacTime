@@ -23,5 +23,6 @@ public:
 	void reactionTestButtonClicked();
 	sf::FloatRect getGraphBounds();
 	sf::FloatRect getReactionBounds();
-
+	sf::FloatRect getReactionTestBounds();
+	bool isReactionTestButtonActive();
 };
