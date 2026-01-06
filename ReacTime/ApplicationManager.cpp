@@ -1,42 +1,37 @@
 #include "ApplicationManager.h"
 
-
-ApplicationManager::ApplicationManager(sf::RenderWindow& window) : m_window(window) {
-	graphButton = Button{ {(WindowWidth / 2) - 2 * ButtonSize.x, 30.f }, true};
-	reactionTestButton = Button{ { (WindowWidth / 2) + ButtonSize.x, 30.f}, false };
-}
-
-void ApplicationManager::update() {
-	if (graphButton.isActive()) {
-		graph.draw(m_window);
-	}
-	else if(reactionTestButton.isActive()) {
-		reactionTest.update();
-		reactionTest.draw(m_window);
-	}
+ApplicationManager::ApplicationManager() : 
+	graphButton({ 0.f,0.f }, "../assets/textures/GraphButton.png"), reacButton({ 0.f,100.f }, "../assets/textures/ReacTButton.png") {
 	
-	graphButton.draw(m_window);
-	reactionTestButton.draw(m_window);
 }
 
-void ApplicationManager::graphButtonClicked() {
-	graphButton.makeActive();
-	reactionTestButton.makePassive();
-}
-void ApplicationManager::reactionTestButtonClicked() {
-	graphButton.makePassive();
-	reactionTestButton.makeActive();
+void ApplicationManager::update(sf::RenderWindow& window) {
+	while (const std::optional event = window.pollEvent()) {
+		if (event->is<sf::Event::Closed>())
+			window.close();
+		if (const auto* mousePressed = event->getIf<sf::Event::MouseButtonPressed>()) {
+			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mousePressed->position.x, mousePressed->position.y });
+			graphButton.update(mouseWorldPos, true);
+			reacButton.update(mouseWorldPos, true);
+		}
+		if (const auto* mouseMoved = event->getIf< sf::Event::MouseMoved>()) {
+			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mouseMoved->position.x, mouseMoved->position.y });
+			graphButton.update(mouseWorldPos, false);
+			reacButton.update(mouseWorldPos, false);
+		}
+	}
+
+
+
+	window.clear();
+
+	graphButton.draw(window);
+	reacButton.draw(window);
+
+	window.display();
 }
 
-sf::FloatRect ApplicationManager::getGraphBounds() {
-	return graphButton.getBounds();
-}
-sf::FloatRect ApplicationManager::getReactionBounds() {
-	return reactionTestButton.getBounds();
-}
-sf::FloatRect ApplicationManager::getReactionTestBounds() {
-	return reactionTest.getStartTestBounds();
-}
-bool ApplicationManager::isReactionTestButtonActive() {
-	return reactionTestButton.isActive();
+void ApplicationManager::draw(sf::RenderWindow& window) {
+	graphButton.draw(window);
+	reacButton.draw(window);
 }

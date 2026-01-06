@@ -1,28 +1,18 @@
 #include "Constants.h"
 #include "Button.h"
-#include "Graph.h"
-#include "ReactionTest.h"
 #pragma once
 
 class ApplicationManager {
 private:
-	Graph graph;
-	ReactionTest reactionTest;
-
 	Button graphButton;
-	Button reactionTestButton;
+	Button reacButton;
 
-	sf::RenderWindow& m_window;
 
 public:
-	explicit ApplicationManager(sf::RenderWindow& win);
 
-	void update();
+	ApplicationManager();
 
-	void graphButtonClicked();
-	void reactionTestButtonClicked();
-	sf::FloatRect getGraphBounds();
-	sf::FloatRect getReactionBounds();
-	sf::FloatRect getReactionTestBounds();
-	bool isReactionTestButtonActive();
+	void update(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window);
+
 };
