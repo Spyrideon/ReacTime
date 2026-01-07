@@ -6,7 +6,7 @@ private:
 
 public:
 
-	//virtual void draw(sf::RenderWindow& window);
+	virtual void draw(sf::RenderWindow& window) = 0;
 
 
 };

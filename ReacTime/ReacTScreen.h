@@ -2,11 +2,11 @@
 
 #include "Screen.h"
 
-class GraphScreen : public Screen {
+class ReacTScreen : public Screen {
 private:
 
 public:
-	GraphScreen();
+	ReacTScreen();
 
 	void draw(sf::RenderWindow& window) override;
 

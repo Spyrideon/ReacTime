@@ -1,12 +1,14 @@
 #include "Button.h"
 
-Button::Button(sf::Vector2f pos, std::string spriteFile) : body(texture){
+Button::Button(sf::Vector2f pos, std::string spriteFile, sf::Vector2f origin) : body(texture) {
 	if (!texture.loadFromFile(spriteFile))
 		printf("Texture could not be loaded from file!");
 	body.setTexture(texture);
 	body.setTextureRect(sf::IntRect({ 0,0 }, { 30,12 }));
 	body.setScale({ 6.f,6.f });
+	body.setOrigin(origin);
 	body.setPosition(pos);
+
 }
 
 
@@ -43,6 +45,7 @@ void Button::updateTexture() {
 		body.setTextureRect(sf::IntRect({ 60,0 }, { 30, 12 }));
 		break;
 	default:
+		printf("Not accepted ButtonState!");
 		break;
 	}
 }

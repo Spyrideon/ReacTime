@@ -18,7 +18,7 @@ private:
 	//bool active;
 
 public:
-	Button(sf::Vector2f pos, std::string spriteFile);
+	Button(sf::Vector2f pos, std::string spriteFile, sf::Vector2f origin = {0.f, 0.f});
 	
 	void update(sf::Vector2f mouseCoords, bool isMouseLeftPressed);
 

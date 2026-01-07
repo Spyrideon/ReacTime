@@ -1,8 +1,9 @@
 #include "ApplicationManager.h"
 
 ApplicationManager::ApplicationManager() : 
-	graphButton({ 0.f,0.f }, "../assets/textures/GraphButton.png"), reacButton({ 0.f,100.f }, "../assets/textures/ReacTButton.png") {
-	
+	graphButton({ (WindowWidth / 2) - 120.f,30.f }, "../assets/textures/GraphButton.png", {30.f, 0.f}),
+	reacButton({ (WindowWidth / 2) + 120.f,30.f }, "../assets/textures/ReacTButton.png") {
+	current = &reacT;
 }
 
 void ApplicationManager::update(sf::RenderWindow& window) {
@@ -22,16 +23,32 @@ void ApplicationManager::update(sf::RenderWindow& window) {
 	}
 
 
+	draw(window);
+}
 
+void ApplicationManager::draw(sf::RenderWindow& window) {
 	window.clear();
+
 
 	graphButton.draw(window);
 	reacButton.draw(window);
+	current->draw(window);
+
 
 	window.display();
 }
 
-void ApplicationManager::draw(sf::RenderWindow& window) {
-	graphButton.draw(window);
-	reacButton.draw(window);
+void ApplicationManager::changeScreen(AppScreens changeTo) {
+	switch(changeTo) {
+	case AppScreens::Graph:
+		current = &graph;
+		break;
+	case AppScreens::ReacT:
+		current = &reacT;
+		break;
+	default:
+		printf("Not accepted Screen state!");
+		break;
+	}
+
 }
