@@ -19,7 +19,8 @@ private:
 	ReacTScreen reacT;
 	Screen* current;
 
-
+	sf::Sprite navBar;
+	sf::Texture navBarTexture{ sf::Vector2u(675,100) };
 public:
 
 	ApplicationManager();
