@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(sf::Vector2f pos, std::string spriteFile, sf::Vector2f origin) : body(texture) {
+Button::Button(sf::Vector2f pos, std::string spriteFile, std::function<void()> buttonFunc, sf::Vector2f origin) : body(texture) {
 	if (!texture.loadFromFile(spriteFile))
 		printf("Texture could not be loaded from file!");
 	body.setTexture(texture);
@@ -9,6 +9,7 @@ Button::Button(sf::Vector2f pos, std::string spriteFile, sf::Vector2f origin) : 
 	body.setOrigin(origin);
 	body.setPosition(pos);
 
+	buttonFunction = buttonFunc;
 }
 
 
@@ -31,6 +32,12 @@ void Button::update(sf::Vector2f mouseCoords, bool isMouseLeftPressed) {
 	if (newState != state) {
 		state = newState;
 		updateTexture();
+	}
+
+	if (state == ButtonState::Pressed) {
+		buttonFunction();
+
+		state = ButtonState::Normal;
 	}
 }
 void Button::updateTexture() {

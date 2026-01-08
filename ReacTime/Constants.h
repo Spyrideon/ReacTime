@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <functional>
 #include <optional>
 #pragma once
 

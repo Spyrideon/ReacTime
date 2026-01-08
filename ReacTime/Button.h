@@ -16,9 +16,9 @@ private:
 	//sf::RectangleShape body;
 	//sf::Vector2f size{ButtonSize};
 	//bool active;
-
+	std::function<void()> buttonFunction;
 public:
-	Button(sf::Vector2f pos, std::string spriteFile, sf::Vector2f origin = {0.f, 0.f});
+	Button(sf::Vector2f pos, std::string spriteFile, std::function<void()> buttonFunc, sf::Vector2f origin = { 0.f, 0.f });
 	
 	void update(sf::Vector2f mouseCoords, bool isMouseLeftPressed);
 

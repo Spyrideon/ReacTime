@@ -1,8 +1,16 @@
 #include "ApplicationManager.h"
 
 ApplicationManager::ApplicationManager() : 
-	graphButton({ (WindowWidth / 2) - 120.f,30.f }, "../assets/textures/GraphButton.png", {30.f, 0.f}),
-	reacButton({ (WindowWidth / 2) + 120.f,30.f }, "../assets/textures/ReacTButton.png") {
+	graphButton(
+		{ (WindowWidth / 2) - 120.f,30.f }, 
+		"../assets/textures/GraphButton.png", 
+		[this]() {changeScreen(AppScreens::Graph); }, 
+		{ 30.f, 0.f }),
+	reacButton(
+		{ (WindowWidth / 2) + 120.f,30.f }, 
+		"../assets/textures/ReacTButton.png", 
+		[this]() {changeScreen(AppScreens::ReacT); }) {
+
 	current = &reacT;
 }
 
