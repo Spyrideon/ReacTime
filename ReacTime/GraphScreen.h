@@ -4,6 +4,9 @@
 
 class GraphScreen : public Screen {
 private:
+	sf::Sprite graphBackground;
+	sf::Texture graphTexture;
+
 
 public:
 	GraphScreen();

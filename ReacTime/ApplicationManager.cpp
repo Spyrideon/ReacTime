@@ -2,18 +2,18 @@
 
 ApplicationManager::ApplicationManager() : 
 	graphButton(
-		{ (WindowWidth / 2) - 120.f,30.f }, 
+		{ (WindowWidth / 2) - 120.f,20.f }, 
 		"../assets/textures/GraphButton.png", 
 		[this]() {changeScreen(AppScreens::Graph); }, 
 		{ 30.f, 0.f }),
 	reacButton(
-		{ (WindowWidth / 2) + 120.f,30.f }, 
+		{ (WindowWidth / 2) + 120.f,20.f }, 
 		"../assets/textures/ReacTButton.png", 
 		[this]() {changeScreen(AppScreens::ReacT); }),
 	navBar(navBarTexture){
 
 	if (!navBarTexture.loadFromFile("../assets/textures/NavigationBanner.png"))
-		printf("Texture could not be loaded from file!");
+		printf("NavBar Texture could not be loaded from file!");
 	navBar.setTexture(navBarTexture);
 	navBar.setTextureRect(sf::IntRect({ 0,0 }, { 200,20 }));
 	navBar.setScale({ 6.f,6.f });
@@ -45,10 +45,10 @@ void ApplicationManager::update(sf::RenderWindow& window) {
 void ApplicationManager::draw(sf::RenderWindow& window) {
 	window.clear();
 
+	current->draw(window);
 	window.draw(navBar);
 	graphButton.draw(window);
 	reacButton.draw(window);
-	current->draw(window);
 
 
 	window.display();
