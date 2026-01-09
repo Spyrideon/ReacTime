@@ -1,37 +1,58 @@
 #include "Button.h"
 
-Button::Button(){}
+Button::Button(sf::Vector2f pos, std::string spriteFile, std::function<void()> buttonFunc, sf::Vector2f origin) : body(texture) {
+	if (!texture.loadFromFile(spriteFile))
+		printf("Button Texture could not be loaded from file!");
+	body.setTexture(texture);
+	body.setTextureRect(sf::IntRect({ 0,0 }, { 30,12 }));
+	body.setScale({ 6.f,6.f });
+	body.setOrigin(origin);
+	body.setPosition(pos);
 
-Button::Button(sf::Vector2f position, bool checkedState) {
-	checkedState ? body.setFillColor(buttonActiveCol) : body.setFillColor(buttonPassiveCol);
-	body.setSize(ButtonSize);
-	// if button is initialized active, color needs to be initialized acc
-	body.setPosition(position);
-
-	//sf::Font font("../assets/sounds/ballHit.wav");
-	//sf::Text text(font);
-
-	active = checkedState;				// set local field
+	buttonFunction = buttonFunc;
 }
 
-sf::FloatRect Button::getBounds() {
-	return body.getGlobalBounds();
-}
-
-bool Button::isActive() {					// return local field
-	return active;
-}
-
-void Button::makePassive() {
-	active = false;
-	body.setFillColor(buttonPassiveCol);
-}
-
-void Button::makeActive() {
-	active = true;
-	body.setFillColor(buttonActiveCol);
-}
 
 void Button::draw(sf::RenderWindow& window) {
 	window.draw(body);
+}
+void Button::update(sf::Vector2f mouseCoords, bool isMouseLeftPressed) {
+	bool hovering = body.getGlobalBounds().contains(mouseCoords);
+	
+	ButtonState newState;
+	if (hovering && isMouseLeftPressed) {
+		newState = ButtonState::Pressed;
+	}
+	else if (hovering)
+		newState = ButtonState::Hovered;
+	else
+		newState = ButtonState::Normal;
+
+	
+	if (newState != state) {
+		state = newState;
+		updateTexture();
+	}
+
+	if (state == ButtonState::Pressed) {
+		buttonFunction();
+
+		state = ButtonState::Normal;
+	}
+}
+void Button::updateTexture() {
+	switch (state) {
+	case ButtonState::Normal:
+		body.setTextureRect(sf::IntRect({ 0,0 }, { 30, 12 }));
+		break;
+	case ButtonState::Hovered:
+		body.setTextureRect(sf::IntRect({ 30,0 }, { 30, 12 }));
+		break;
+	case ButtonState::Pressed:
+		body.setTextureRect(sf::IntRect({ 60,0 }, { 30, 12 }));
+		break;
+	default:
+		printf("Not accepted ButtonState!");
+		break;
+	}
 }

@@ -112,7 +112,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,18 +144,18 @@
   <ItemGroup>
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="GraphScreen.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ReactionTest.cpp" />
-    <ClCompile Include="Vertex.cpp" />
-    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="ReacTScreen.cpp" />
+    <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="ReactionTest.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="GraphScreen.h" />
+    <ClInclude Include="ReacTScreen.h" />
+    <ClInclude Include="Screen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

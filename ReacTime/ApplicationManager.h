@@ -1,28 +1,32 @@
 #include "Constants.h"
+#include "ReacTScreen.h"
+#include "GraphScreen.h"
+//#include "Screen.h"
 #include "Button.h"
-#include "Graph.h"
-#include "ReactionTest.h"
 #pragma once
+
+enum class AppScreens {
+	Graph,
+	ReacT
+};
 
 class ApplicationManager {
 private:
-	Graph graph;
-	ReactionTest reactionTest;
-
 	Button graphButton;
-	Button reactionTestButton;
+	Button reacButton;
+	
+	GraphScreen graph;
+	ReacTScreen reacT;
+	Screen* current;
 
-	sf::RenderWindow& m_window;
-
+	sf::Sprite navBar;
+	sf::Texture navBarTexture{ sf::Vector2u(675,100) };
 public:
-	explicit ApplicationManager(sf::RenderWindow& win);
 
-	void update();
+	ApplicationManager();
 
-	void graphButtonClicked();
-	void reactionTestButtonClicked();
-	sf::FloatRect getGraphBounds();
-	sf::FloatRect getReactionBounds();
-	sf::FloatRect getReactionTestBounds();
-	bool isReactionTestButtonActive();
+	void update(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window);
+	void changeScreen(AppScreens changeTo);
+
 };

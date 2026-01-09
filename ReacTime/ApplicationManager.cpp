@@ -1,42 +1,70 @@
 #include "ApplicationManager.h"
 
+ApplicationManager::ApplicationManager() : 
+	graphButton(
+		{ (WindowWidth / 2) - 120.f,20.f }, 
+		"../assets/textures/GraphButton.png", 
+		[this]() {changeScreen(AppScreens::Graph); }, 
+		{ 30.f, 0.f }),
+	reacButton(
+		{ (WindowWidth / 2) + 120.f,20.f }, 
+		"../assets/textures/ReacTButton.png", 
+		[this]() {changeScreen(AppScreens::ReacT); }),
+	navBar(navBarTexture){
 
-ApplicationManager::ApplicationManager(sf::RenderWindow& window) : m_window(window) {
-	graphButton = Button{ {(WindowWidth / 2) - 2 * ButtonSize.x, 30.f }, true};
-	reactionTestButton = Button{ { (WindowWidth / 2) + ButtonSize.x, 30.f}, false };
+	if (!navBarTexture.loadFromFile("../assets/textures/NavigationBanner.png"))
+		printf("NavBar Texture could not be loaded from file!");
+	navBar.setTexture(navBarTexture);
+	navBar.setTextureRect(sf::IntRect({ 0,0 }, { 200,20 }));
+	navBar.setScale({ 6.f,6.f });
+
+
+	current = &reacT;
 }
 
-void ApplicationManager::update() {
-	if (graphButton.isActive()) {
-		graph.draw(m_window);
+void ApplicationManager::update(sf::RenderWindow& window) {
+	while (const std::optional event = window.pollEvent()) {
+		if (event->is<sf::Event::Closed>())
+			window.close();
+		if (const auto* mousePressed = event->getIf<sf::Event::MouseButtonPressed>()) {
+			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mousePressed->position.x, mousePressed->position.y });
+			graphButton.update(mouseWorldPos, true);
+			reacButton.update(mouseWorldPos, true);
+		}
+		if (const auto* mouseMoved = event->getIf< sf::Event::MouseMoved>()) {
+			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mouseMoved->position.x, mouseMoved->position.y });
+			graphButton.update(mouseWorldPos, false);
+			reacButton.update(mouseWorldPos, false);
+		}
 	}
-	else if(reactionTestButton.isActive()) {
-		reactionTest.update();
-		reactionTest.draw(m_window);
+
+
+	draw(window);
+}
+
+void ApplicationManager::draw(sf::RenderWindow& window) {
+	window.clear();
+
+	current->draw(window);
+	window.draw(navBar);
+	graphButton.draw(window);
+	reacButton.draw(window);
+
+
+	window.display();
+}
+
+void ApplicationManager::changeScreen(AppScreens changeTo) {
+	switch(changeTo) {
+	case AppScreens::Graph:
+		current = &graph;
+		break;
+	case AppScreens::ReacT:
+		current = &reacT;
+		break;
+	default:
+		printf("Not accepted Screen state!");
+		break;
 	}
-	
-	graphButton.draw(m_window);
-	reactionTestButton.draw(m_window);
-}
 
-void ApplicationManager::graphButtonClicked() {
-	graphButton.makeActive();
-	reactionTestButton.makePassive();
-}
-void ApplicationManager::reactionTestButtonClicked() {
-	graphButton.makePassive();
-	reactionTestButton.makeActive();
-}
-
-sf::FloatRect ApplicationManager::getGraphBounds() {
-	return graphButton.getBounds();
-}
-sf::FloatRect ApplicationManager::getReactionBounds() {
-	return reactionTestButton.getBounds();
-}
-sf::FloatRect ApplicationManager::getReactionTestBounds() {
-	return reactionTest.getStartTestBounds();
-}
-bool ApplicationManager::isReactionTestButtonActive() {
-	return reactionTestButton.isActive();
 }

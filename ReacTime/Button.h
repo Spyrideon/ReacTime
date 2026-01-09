@@ -1,28 +1,28 @@
 #include "Constants.h"
 #pragma once
 
+enum class ButtonState {
+	Normal,
+	Hovered,
+	Pressed
+};
+
 class Button {
 private:
-	sf::RectangleShape body;
-	sf::Vector2f size{ButtonSize};
+	sf::Sprite body;
+	sf::Texture texture{ sf::Vector2u(30,12) };
+	ButtonState state = ButtonState::Normal;
 
-	//sf::Text text;
-
-	bool active;
-
+	//sf::RectangleShape body;
+	//sf::Vector2f size{ButtonSize};
+	//bool active;
+	std::function<void()> buttonFunction;
 public:
-	Button();
-
-	Button(sf::Vector2f position, bool checkedState);
+	Button(sf::Vector2f pos, std::string spriteFile, std::function<void()> buttonFunc, sf::Vector2f origin = { 0.f, 0.f });
+	
+	void update(sf::Vector2f mouseCoords, bool isMouseLeftPressed);
 
 	void draw(sf::RenderWindow& window);
-
-	sf::FloatRect getBounds();
-
-	bool isActive();
-
-	void makeActive();
-
-	void makePassive();
+	void updateTexture();
 
 };
