@@ -30,11 +30,14 @@ void ApplicationManager::update(sf::RenderWindow& window) {
 			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mousePressed->position.x, mousePressed->position.y });
 			graphButton.update(mouseWorldPos, true);
 			reacButton.update(mouseWorldPos, true);
+			current->update(mouseWorldPos, true);
+
 		}
-		if (const auto* mouseMoved = event->getIf< sf::Event::MouseMoved>()) {
+		else if (const auto* mouseMoved = event->getIf< sf::Event::MouseMoved>()) {
 			sf::Vector2f mouseWorldPos = window.mapPixelToCoords({ mouseMoved->position.x, mouseMoved->position.y });
 			graphButton.update(mouseWorldPos, false);
 			reacButton.update(mouseWorldPos, false);
+			current->update(mouseWorldPos, false);
 		}
 	}
 
