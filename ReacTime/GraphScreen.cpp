@@ -8,6 +8,6 @@ GraphScreen::GraphScreen() : graphBackground(graphTexture){
 }
 
 void GraphScreen::draw(sf::RenderWindow& window) {
-	printf("Graph Screen is being drawn!\n");
+	//printf("Graph Screen is being drawn!\n");
 	window.draw(graphBackground);
 }
