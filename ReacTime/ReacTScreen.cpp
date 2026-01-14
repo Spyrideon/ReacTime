@@ -9,14 +9,50 @@ ReacTScreen::ReacTScreen() : startButton(
 }
 
 void ReacTScreen::draw(sf::RenderWindow& window) {
-	//printf("ReacT Screen is being drawn!\n");
-	startButton.draw(window);
+	switch (state) {
+	case State::Idle:
+		startButton.draw(window);
+		break;
+	case State::Waiting:
+
+		break;
+
+	case State::Stimulus:
+
+		break;
+
+	case State::Finished:
+
+		break;
+
+	default:
+		printf("Unknown ReacTScreen state!");
+	}
 }
 
 void ReacTScreen::update(sf::Vector2f mouseCoords, bool isMouseLeftPressed) {
-	startButton.update(mouseCoords, isMouseLeftPressed);
+	switch (state) {
+	case State::Idle:
+		startButton.update(mouseCoords, isMouseLeftPressed);
+		break;
+	case State::Waiting:
+
+		break;
+
+	case State::Stimulus:
+
+		break;
+
+	case State::Finished:
+
+		break;
+
+	default:
+		printf("Unknown ReacTScreen state!");
+	}
 }
 
 void ReacTScreen::startTest() {
-	printf("Reaction Test was started!\n");
+	//printf("Reaction Test was started!\n");
+	state = State::Waiting;
 }

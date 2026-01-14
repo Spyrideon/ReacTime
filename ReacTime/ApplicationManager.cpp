@@ -4,12 +4,12 @@ ApplicationManager::ApplicationManager() :
 	graphButton(
 		{ (WindowWidth / 2) - 120.f,20.f }, 
 		"../assets/textures/GraphButton.png", 
-		[this]() {changeScreen(AppScreens::Graph); }, 
+		[this]() {changeScreen(AppScreen::Graph); }, 
 		{ 30.f, 0.f }),
 	reacButton(
 		{ (WindowWidth / 2) + 120.f,20.f }, 
 		"../assets/textures/ReacTButton.png", 
-		[this]() {changeScreen(AppScreens::ReacT); }),
+		[this]() {changeScreen(AppScreen::ReacT); }),
 	navBar(navBarTexture){
 
 	if (!navBarTexture.loadFromFile("../assets/textures/NavigationBanner.png"))
@@ -57,16 +57,16 @@ void ApplicationManager::draw(sf::RenderWindow& window) {
 	window.display();
 }
 
-void ApplicationManager::changeScreen(AppScreens changeTo) {
+void ApplicationManager::changeScreen(AppScreen changeTo) {
 	switch(changeTo) {
-	case AppScreens::Graph:
+	case AppScreen::Graph:
 		current = &graph;
 		break;
-	case AppScreens::ReacT:
+	case AppScreen::ReacT:
 		current = &reacT;
 		break;
 	default:
-		printf("Not accepted Screen state!");
+		printf("Not accepted AppScreen state!");
 		break;
 	}
 

@@ -8,7 +8,7 @@ GraphScreen::GraphScreen() : graphBackground(graphTexture){
 	graphBackground.setTexture(graphTexture);
 	graphBackground.setTextureRect(sf::IntRect({ 0,0 }, { 1200,675 }));
 
-	vertexArray.reserve(100);
+	vertexVector.reserve(100);
 	//writeVertex({ 0.f,0.f });
 }
 

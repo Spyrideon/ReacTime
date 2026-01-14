@@ -3,10 +3,17 @@
 #include "Screen.h"
 #include "Constants.h"
 
+enum class State {
+	Idle,
+	Waiting,
+	Stimulus,
+	Finished
+};
+
 class ReacTScreen : public Screen {
 private:
 	Button startButton;
-
+	State state = State::Idle;
 
 public:
 	ReacTScreen();

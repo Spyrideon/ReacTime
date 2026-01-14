@@ -5,7 +5,7 @@
 #include "Button.h"
 #pragma once
 
-enum class AppScreens {
+enum class AppScreen {
 	Graph,
 	ReacT
 };
@@ -27,6 +27,6 @@ public:
 
 	void update(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
-	void changeScreen(AppScreens changeTo);
+	void changeScreen(AppScreen changeTo);
 
 };
