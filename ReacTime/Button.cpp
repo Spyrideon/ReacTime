@@ -1,7 +1,8 @@
 #include "Button.h"
 
+// constructor with lambda function to define behavior 
 Button::Button(sf::Vector2f pos, std::string spriteFile, std::function<void()> buttonFunc, sf::Vector2f origin) : body(texture) {
-	if (!texture.loadFromFile(spriteFile))
+	if (!texture.loadFromFile(spriteFile))							// initialize button sprite
 		printf("Button Texture could not be loaded from file!");
 	body.setTexture(texture);
 	body.setTextureRect(sf::IntRect({ 0,0 }, { 30,12 }));
@@ -34,13 +35,13 @@ void Button::update(sf::Vector2f mouseCoords, bool isMouseLeftPressed) {
 		updateTexture();
 	}
 
-	if (state == ButtonState::Pressed) {
+	if (state == ButtonState::Pressed) {	// execute buttonFunction if pressed to induce logic
 		buttonFunction();
 
 		state = ButtonState::Normal;
 	}
 }
-void Button::updateTexture() {
+void Button::updateTexture() {		// standardised texture layout (needs to be 30x12!)
 	switch (state) {
 	case ButtonState::Normal:
 		body.setTextureRect(sf::IntRect({ 0,0 }, { 30, 12 }));

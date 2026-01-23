@@ -57,7 +57,7 @@ void ApplicationManager::draw(sf::RenderWindow& window) {
 	window.display();
 }
 
-void ApplicationManager::changeScreen(AppScreen changeTo) {
+void ApplicationManager::changeScreen(AppScreen changeTo) {		// current point to screen that should be drawn, and 
 	switch(changeTo) {
 	case AppScreen::Graph:
 		current = &graph;

@@ -53,6 +53,5 @@ void ReacTScreen::update(sf::Vector2f mouseCoords, bool isMouseLeftPressed) {
 }
 
 void ReacTScreen::startTest() {
-	//printf("Reaction Test was started!\n");
 	state = State::Waiting;
 }

@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "Constants.h"
 
+// capture current screen state (reaction test running, finished etc.)
 enum class State {
 	Idle,
 	Waiting,
@@ -12,7 +13,7 @@ enum class State {
 
 class ReacTScreen : public Screen {
 private:
-	Button startButton;
+	Button startButton;		// button to start a reaction test
 	State state = State::Idle;
 
 public:

@@ -1,10 +1,10 @@
 #include "Constants.h"
 #include "ReacTScreen.h"
 #include "GraphScreen.h"
-//#include "Screen.h"
 #include "Button.h"
 #pragma once
 
+// to capture the active screen (adjustable)
 enum class AppScreen {
 	Graph,
 	ReacT
@@ -17,7 +17,7 @@ private:
 	
 	GraphScreen graph;
 	ReacTScreen reacT;
-	Screen* current;
+	Screen* current;		// pointer to current screen, only switch with button logic
 
 	sf::Sprite navBar;
 	sf::Texture navBarTexture{ sf::Vector2u(675,100) };
